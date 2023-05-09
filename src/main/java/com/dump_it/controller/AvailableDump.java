@@ -7,31 +7,37 @@ import java.util.Objects;
 
 // Return to the view all the available dump in the directory
 public class AvailableDump {
-    String path;
 
-    public ArrayList<String> getAvailableFiles() {
-        return availableFiles;
-    }
+  private String path;
+  private File directoryFile;
+  private ArrayList<String> availableFiles;
+  private ArrayList<String> availableDirectories;
 
-    File directoryFile;
-    ArrayList<String> availableFiles;
-    public AvailableDump(String path) {
-        this.path = path;
-        loadDirectory();
-    }
+  public ArrayList<String> getAvailableFiles() {
+    return availableFiles;
+  }
 
-    private void loadDirectory() {
-        try {
-            if((directoryFile = new File(path)).isDirectory()) {
-                availableFiles = new  ArrayList<>(List.of(Objects.requireNonNull(directoryFile.list())));
-            }
-            else {
-                this.availableFiles = new ArrayList<>();
-            }
+  public ArrayList<String> getAvailableDirectories() {
+    return availableDirectories;
+  }
+
+  public AvailableDump(String path) {
+    this.path = path;
+    loadDirectory();
+  }
+
+  private void loadDirectory() {
+    this.availableFiles = new ArrayList<>();
+    this.availableDirectories = new ArrayList<>();
+    try {
+      if ((directoryFile = new File(path)).isDirectory()) {
+        for(File f : Objects.requireNonNull(directoryFile.listFiles())) {
+          if(f.isDirectory()) availableDirectories.add(f.getName());
+          else if(f.isFile()) availableFiles.add(f.getName());
         }
-        catch (NullPointerException e) {
-            this.availableFiles = new ArrayList<>();
-            System.out.println("Directory not found or not directory path given");
-        }
+      }
+    } catch (NullPointerException e) {
+      System.out.println("Directory not found or not directory path given");
     }
+  }
 }
