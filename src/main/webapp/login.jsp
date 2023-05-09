@@ -13,7 +13,7 @@
                     <label class="mb-1 block pr-4 font-bold text-gray-500 md:mb-0 md:text-right" for="username"> Nom d'utilisateur </label>
                 </div>
                 <div class="md:w-2/3">
-                    <input class="w-full appearance-none rounded border-2 border-gray-200 bg-gray-200 px-4 py-2 leading-tight text-gray-700 focus:border-[#357cce] focus:bg-white focus:outline-none" name="username" type="text" placeholder="test@kleegroup.com" />
+                    <input class="w-full appearance-none rounded border-2 border-gray-200 bg-gray-200 px-4 py-2 leading-tight text-gray-700 focus:border-[#357cce] focus:bg-white focus:outline-none" name="username" id="username" type="text" placeholder="test@kleegroup.com" />
                 </div>
             </div>
             <div class="mb-6 md:flex md:items-center">
@@ -21,7 +21,7 @@
                     <label class="mb-1 block pr-4 font-bold text-gray-500 md:mb-0 md:text-right" for="password"> Mot de passe </label>
                 </div>
                 <div class="md:w-2/3">
-                    <input name="password" class="w-full appearance-none rounded border-2 border-gray-200 bg-gray-200 px-4 py-2 leading-tight text-gray-700 focus:border-[#357cce] focus:bg-white focus:outline-none"type="password" placeholder="******************" />
+                    <input name="password" class="w-full appearance-none rounded border-2 border-gray-200 bg-gray-200 px-4 py-2 leading-tight text-gray-700 focus:border-[#357cce] focus:bg-white focus:outline-none"type="password" id="password" placeholder="******************" />
                 </div>
             </div>
             <div class="md:flex md:items-center">
