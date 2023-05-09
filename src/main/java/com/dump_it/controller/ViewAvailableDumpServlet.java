@@ -1,28 +1,28 @@
 package com.dump_it.controller;
 
-import java.io.File;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Objects;
+import jakarta.servlet.ServletException;
+import jakarta.servlet.annotation.WebServlet;
+import jakarta.servlet.http.HttpServlet;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 
-// Return to the view all the available dump in the directory
-public class ViewAvailableDumpServlet {
-    String path;
-    File directoryFile;
-    ArrayList<String> availableFiles;
-    public ViewAvailableDumpServlet(String path) {
-        this.path = path;
-        loadDirectory();
+import java.io.IOException;
+import java.util.ArrayList;
+
+@WebServlet("/availableServlet")
+public class ViewAvailableDumpServlet extends HttpServlet {
+    private final ArrayList<String> availableDumpList;
+    public ViewAvailableDumpServlet() {
+         availableDumpList = (new AvailableDump("W:\\")).getAvailableFiles();
     }
 
-    private void loadDirectory() {
-        try {
-            if((directoryFile = new File(path)).isDirectory()) {
-                availableFiles = new ArrayList<>(List.of(Objects.requireNonNull(directoryFile.list())));
-            }
-        }
-        catch (NullPointerException e) {
-            System.out.println("Directory not found or not directory path given");
-        }
+    public ArrayList<String> getAvailableDumpList() {
+        return availableDumpList;
+    }
+
+    @Override
+    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        req.setAttribute("dump_list",availableDumpList);
+        req.getRequestDispatcher("dump_list.jsp").forward(req,resp);
     }
 }
