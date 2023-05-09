@@ -13,7 +13,7 @@ import java.util.ArrayList;
 public class ViewAvailableDumpServlet extends HttpServlet {
     private final ArrayList<String> availableDumpList;
     public ViewAvailableDumpServlet() {
-         availableDumpList = (new AvailableDump("W:\\")).getAvailableFiles();
+         availableDumpList = (new AvailableDump("\\\\Klee-file02\\spark archives")).getAvailableFiles();
     }
 
     public ArrayList<String> getAvailableDumpList() {

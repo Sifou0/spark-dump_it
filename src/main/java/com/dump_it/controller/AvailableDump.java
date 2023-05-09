@@ -23,13 +23,14 @@ public class AvailableDump {
     private void loadDirectory() {
         try {
             if((directoryFile = new File(path)).isDirectory()) {
-                availableFiles = new ArrayList<>(List.of(Objects.requireNonNull(directoryFile.list())));
+                availableFiles = new  ArrayList<>(List.of(Objects.requireNonNull(directoryFile.list())));
             }
             else {
-                availableFiles = new ArrayList<>();
+                this.availableFiles = new ArrayList<>();
             }
         }
         catch (NullPointerException e) {
+            this.availableFiles = new ArrayList<>();
             System.out.println("Directory not found or not directory path given");
         }
     }
