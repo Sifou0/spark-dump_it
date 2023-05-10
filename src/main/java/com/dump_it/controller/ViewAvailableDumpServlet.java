@@ -11,7 +11,7 @@ import java.util.ArrayList;
 @WebServlet("/availableServlet")
 public class ViewAvailableDumpServlet extends HttpServlet {
   private String path;
-  private final String initPath = "\\\\Klee-file02\\spark archives\\Technique";
+  private final String initPath = "\\\\klee-storage01.klee.lan.net\\SPARK ARCHIVES\\";
   private ArrayList<String> availableDumpFilesList;
   private ArrayList<String> availableDumpDirList;
 
