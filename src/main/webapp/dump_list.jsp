@@ -14,13 +14,16 @@
 </head>
 <body>
 <div class="flex justify-center p-4 w-screen ">
-    <form class="w-1/3">
+    <form method="post" action="available" class="w-1/3">
+        <c:if test="${canBack}">
+        <div class="text-center rounded-full bg-slate-300 my-4 p-1 text-white hover:bg-slate-400">
+            <input class="" type="submit" name="backButton" value="Go back" />
+        </div>
+        </c:if>
         <c:forEach var="i" items="${dumpDirList}">
-        <div
-                class="text-center my-2 rounded bg-blue-300 p-1 text-white hover:bg-blue-400"
-        >
+        <div class="text-center my-2 rounded bg-blue-300 p-1 text-white hover:bg-blue-400">
             <i class="fa-solid fa-folder"></i>
-            <input class="" type="submit" value="${i}" />
+            <input class="" type="submit" name="dirButton" value="${i}" />
         </div>
         </c:forEach>
         <c:forEach var="i" items="${dumpFileslist}">
