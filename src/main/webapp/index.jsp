@@ -13,5 +13,6 @@
     <h1 class="text-blue-600"><%= "Hello World!" %></h1>
     <br/>
     <a href="login">Hello Servlet</a>
+    <h1> <%= session.getAttribute("name") %> </h1>
 </body>
 </html>

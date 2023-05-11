@@ -1,6 +1,7 @@
 package com.dump_it.dao;
 
 import com.dump_it.model.User;
+import org.postgresql.Driver;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -9,15 +10,13 @@ public class UserDao {
     private final String DB_URL = "jdbc:postgresql://localhost:5432/postgres";
     private final String USER = "postgres";
     private final String PWD = "spark";
-
-
-    public ArrayList<User> getAll() {
+    public ArrayList<User> getAll() throws ClassNotFoundException {
+        Class.forName("org.postgresql.Driver");
         ArrayList<User> users = new ArrayList<>();
         try (
-                //Class.forName("org.postgresql.Driver");
                 Connection con = DriverManager.getConnection(DB_URL,USER,PWD);
                 Statement statement = con.createStatement();
-                ResultSet rs = statement.executeQuery("select * from public.users")
+                ResultSet rs = statement.executeQuery("select * from public.users");
         )
         {
             while(rs.next()) {
@@ -30,7 +29,9 @@ public class UserDao {
         return users;
     }
 
-    public void insert(String name, String pwd) {
+    public void insert(String name, String pwd) throws ClassNotFoundException {
+        Class.forName("org.postgresql.Driver");
+
         try (Connection con = DriverManager.getConnection(DB_URL,USER,PWD))
         {
             PreparedStatement preparedStatement = con.prepareStatement("insert into public.users(name,pwd) values (?,?);");
@@ -43,7 +44,9 @@ public class UserDao {
         }
     }
 
-    public void update(long id, String[] params) {
+    public void update(long id, String[] params) throws ClassNotFoundException {
+        Class.forName("org.postgresql.Driver");
+
         try (Connection con = DriverManager.getConnection(DB_URL,USER,PWD))
         {
             PreparedStatement preparedStatement = con.prepareStatement("update users set name = ?, pwd = ? where id = ? ;");
@@ -57,7 +60,9 @@ public class UserDao {
         }
     }
 
-    public void delete(long id) {
+    public void delete(long id) throws ClassNotFoundException {
+        Class.forName("org.postgresql.Driver");
+
         try (Connection con = DriverManager.getConnection(DB_URL,USER,PWD))
         {
             PreparedStatement preparedStatement = con.prepareStatement("delete from users where id = ?;");

@@ -6,7 +6,6 @@
 <servlet>
     <servlet-name>loginServlet</servlet-name>
     <servlet-class>com.dump_it.controller.LoginServlet</servlet-class>
-    <jsp-file>/login.jsp</jsp-file>
 </servlet>
 <servlet-mapping>
     <servlet-name>loginServlet</servlet-name>
@@ -21,3 +20,4 @@
         <url-pattern>/available</url-pattern>
     </servlet-mapping>
 </web-app>
+
