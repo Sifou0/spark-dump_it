@@ -19,5 +19,13 @@
         <servlet-name>availableServlet</servlet-name>
         <url-pattern>/available</url-pattern>
     </servlet-mapping>
+    <servlet>
+        <servlet-name>registerServlet</servlet-name>
+        <servlet-class>com.dump_it.controller.RegisterServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>registerServlet</servlet-name>
+        <url-pattern>/register</url-pattern>
+    </servlet-mapping>
 </web-app>
 

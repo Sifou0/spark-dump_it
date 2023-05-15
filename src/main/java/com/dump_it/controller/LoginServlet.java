@@ -7,14 +7,24 @@ import jakarta.servlet.annotation.*;
 import jakarta.servlet.http.*;
 import java.io.*;
 
+import static com.dump_it.controller.Authentification.sha256;
+
 @WebServlet("/loginServlet")
 public class LoginServlet extends HttpServlet {
-  static UserDao userDao = new UserDao();
+
+  private UserDao userDao;
+
+  @Override
+  public void init() throws ServletException {
+    super.init();
+    userDao = new UserDao();
+  }
+
   public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
     HttpSession session = request.getSession();
     try {
       for(User u : userDao.getAll()) {
-        if(u.getName().equals(request.getParameter("username")) && u.getPwd().equals(request.getParameter("password"))) {
+        if(u.getName().equals(request.getParameter("username")) && u.getPwd().equals(sha256(request.getParameter("password")))) {
           session.setAttribute("name",u.getName());
           response.sendRedirect("/available");
           return;
@@ -30,7 +40,7 @@ public class LoginServlet extends HttpServlet {
 
   @Override
   protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-    request.getRequestDispatcher("dump_list.jsp").forward(request, response);
+    request.getRequestDispatcher("login.jsp").forward(request, response);
   }
 
   public void destroy() {}
