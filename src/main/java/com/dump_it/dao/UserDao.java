@@ -1,15 +1,30 @@
 package com.dump_it.dao;
 
 import com.dump_it.model.User;
+import io.github.cdimascio.dotenv.Dotenv;
 import org.postgresql.Driver;
 
 import java.sql.*;
 import java.util.ArrayList;
 
 public class UserDao {
-    private final String DB_URL = "jdbc:postgresql://localhost:5432/postgres";
-    private final String USER = "postgres";
-    private final String PWD = "spark";
+
+    private String DB_URL;
+    private String USER;
+    private String PWD;
+
+    public UserDao() {
+        try {
+            Dotenv dotenv = Dotenv.load();
+            DB_URL = dotenv.get("DB_URL");
+            USER = dotenv.get("USER");
+            PWD = dotenv.get("PWD");
+        }
+        catch (NullPointerException e) {
+            System.out.println("No environment variables");
+        }
+    }
+
     public ArrayList<User> getAll() throws ClassNotFoundException {
         Class.forName("org.postgresql.Driver");
         ArrayList<User> users = new ArrayList<>();

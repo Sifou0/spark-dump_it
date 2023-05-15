@@ -14,7 +14,6 @@ public class LoginServlet extends HttpServlet {
     HttpSession session = request.getSession();
     try {
       for(User u : userDao.getAll()) {
-        System.out.println(u.toString());
         if(u.getName().equals(request.getParameter("username")) && u.getPwd().equals(request.getParameter("password"))) {
           session.setAttribute("name",u.getName());
           response.sendRedirect("/available");
