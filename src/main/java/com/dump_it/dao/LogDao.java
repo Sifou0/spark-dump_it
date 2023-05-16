@@ -62,7 +62,6 @@ public class LogDao extends Dao {
                     break;
             }
             return new Log(resultSet.getInt("id"),resultSet.getInt("user_id"),dumpStatus);
-
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }

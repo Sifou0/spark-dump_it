@@ -27,5 +27,13 @@
         <servlet-name>registerServlet</servlet-name>
         <url-pattern>/register</url-pattern>
     </servlet-mapping>
+    <servlet>
+        <servlet-name>importServlet</servlet-name>
+        <servlet-class>com.dump_it.controller.ImportServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>importServlet</servlet-name>
+        <url-pattern>/import</url-pattern>
+    </servlet-mapping>
 </web-app>
 

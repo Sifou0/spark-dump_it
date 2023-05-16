@@ -11,7 +11,8 @@ import java.util.ArrayList;
 @WebServlet("/availableServlet")
 public class ViewAvailableDumpServlet extends HttpServlet {
   private String path;
-  private final String initPath = "\\\\klee-storage01.klee.lan.net\\SPARK ARCHIVES\\";
+  private final String initPath = "C:\\Users\\iboumehdi\\Documents\\DUMP"; //"\\\\klee-storage01.klee.lan.net\\SPARK ARCHIVES\\";
+
   private ArrayList<String> availableDumpFilesList;
   private ArrayList<String> availableDumpDirList;
 
@@ -52,6 +53,7 @@ public class ViewAvailableDumpServlet extends HttpServlet {
     loadAvailable();
     req.setAttribute("dumpFileslist", availableDumpFilesList);
     req.setAttribute("dumpDirList",availableDumpDirList);
+    req.getSession().setAttribute("filePath",path);
     req.getRequestDispatcher("dump_list.jsp").forward(req, resp);
     //System.out.println(path);
   }
@@ -62,6 +64,7 @@ public class ViewAvailableDumpServlet extends HttpServlet {
     loadAvailable();
     req.setAttribute("dumpFileslist", availableDumpFilesList);
     req.setAttribute("dumpDirList",availableDumpDirList);
+    req.getSession().setAttribute("filePath",path);
     req.setAttribute("canBack", false);
     req.getRequestDispatcher("dump_list.jsp").forward(req, resp);
   }
